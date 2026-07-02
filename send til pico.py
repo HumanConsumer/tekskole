@@ -2,7 +2,7 @@ import socket
 
 
 # skriv pico ip her
-PICO_IP = "192.168.137.124"  
+PICO_IP = "192.168.xxx.xxx"  
 PICO_PORT = 8080           #skriv pico port
 
 # Opret UDP socket
