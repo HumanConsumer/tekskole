@@ -7,15 +7,14 @@ import socket
 from neopixel import Neopixel
 from utime import sleep
 from farve import FARVE, REGNBUE_SEKVENS
-
-#        \/   SÆT NAVN OG PASSWORD IND HER 
-ssid = "navn"
-word = "password"
-
+from hcw import ssid, word
 
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
 wlan.connect(ssid, word)
+
+
+
 
 trekantNum = [[0,42],[43,62],[63,82],[83,102],[103,122],]
 
@@ -71,6 +70,7 @@ def sæt_gradient_forside(farve1, farve2, lysstyrke):
     pixels.show()
 
 
+
 if not wlan.isconnected():
     sæt_farve_lampe(FARVE['lilla'],255)
     time.sleep(1)
@@ -92,16 +92,34 @@ while not wlan.isconnected():
 print("Connected, IP:", wlan.ifconfig()[0])
 sæt_farve_lampe(FARVE['blå'],255)
 
+
+
+addr = socket.getaddrinfo("", 8080)[0][-1]
+s = socket.socket()
+s.bind(addr)
+s.listen(1)
+print("Listening on", addr)
+
+
+
+
 while True:
     while not wlan.isconnected():
         print("Connecting...")
         time.sleep(1)
-        
+    
     cl, addr = s.accept()
     data = cl.recv(1024).decode().strip()
     partsstr=data.split()
     parts = [int(p) for p in partsstr]
     
+    # start her
     
+    #SKRIV KODE HER!!!
     
-    
+    # stop her
+    cl.send(b"OK\n")                       # reply back
+    cl.close()
+
+
+
