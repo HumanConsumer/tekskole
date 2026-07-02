@@ -8,7 +8,7 @@ from neopixel import Neopixel
 from utime import sleep
 from farve import FARVE, REGNBUE_SEKVENS
 
-ssid = "navn"
+ssid = "name"
 word = "password"
 
 wlan = network.WLAN(network.STA_IF)
@@ -96,7 +96,7 @@ sæt_farve_lampe(FARVE['blå'],255)
 
 
 
-addr = socket.getaddrinfo("", 8080)[0][-1]
+addr = (wlan.ifconfig()[0], 8080)
 s = socket.socket()
 s.bind(addr)
 s.listen(1)
