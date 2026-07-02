@@ -8,8 +8,10 @@ from neopixel import Neopixel
 from utime import sleep
 from farve import FARVE, REGNBUE_SEKVENS
 
+#        \/   SÆT NAVN OG PASSWORD IND HER 
 ssid = "navn"
-word = "password!!!"
+word = "password"
+
 
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
@@ -94,3 +96,12 @@ while True:
     while not wlan.isconnected():
         print("Connecting...")
         time.sleep(1)
+        
+    cl, addr = s.accept()
+    data = cl.recv(1024).decode().strip()
+    partsstr=data.split()
+    parts = [int(p) for p in partsstr]
+    
+    
+    
+    
