@@ -7,7 +7,9 @@ import socket
 from neopixel import Neopixel
 from utime import sleep
 from farve import FARVE, REGNBUE_SEKVENS
-from hcw import ssid, word
+
+ssid = "navn"
+word = "password"
 
 wlan = network.WLAN(network.STA_IF)
 wlan.active(True)
